@@ -1,4 +1,6 @@
-import { Observable } from 'rxjs/Observable'
+import * as Rx from 'fp-ts-rxjs/lib/Observable'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { Observable } from 'rxjs'
 import { Cmd } from './Cmd'
 import { Sub, none } from './Sub'
 import * as platform from './Platform'
@@ -26,7 +28,10 @@ export function program<model, msg, dom>(
   subscriptions: (model: model) => Sub<msg> = () => none
 ): Program<model, msg, dom> {
   const { dispatch, cmd$, sub$, model$ } = platform.program(init, update, subscriptions)
-  const html$ = model$.map(model => view(model))
+  const html$ = pipe(
+    model$,
+    Rx.map(model => view(model))
+  )
   return { dispatch, cmd$, sub$, model$, html$ }
 }
 

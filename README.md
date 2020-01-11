@@ -1,3 +1,5 @@
+(fork of [gcanti/elm-ts](https://github.com/gcanti/elm-ts))
+
 # Differences from Elm
 
 - no ports

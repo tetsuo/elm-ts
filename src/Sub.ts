@@ -1,16 +1,15 @@
-import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/observable/merge'
-import 'rxjs/add/observable/empty'
-import 'rxjs/add/operator/map'
+import * as O from 'fp-ts-rxjs/lib/Observable'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { merge, Observable, empty } from 'rxjs'
 
 export type Sub<msg> = Observable<msg>
 
 export function map<a, msg>(sub: Sub<a>, f: (a: a) => msg): Sub<msg> {
-  return sub.map(f)
+  return pipe(sub, O.map(f))
 }
 
 export function batch<msg>(arr: Array<Sub<msg>>): Sub<msg> {
-  return Observable.merge(...arr)
+  return merge(...arr)
 }
 
-export const none: Sub<never> = Observable.empty()
+export const none: Sub<never> = empty()
