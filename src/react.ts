@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs'
 import { ReactElement } from 'react'
-import { Cmd } from './Cmd'
-import { Sub } from './Sub'
-import * as html from './Html'
+import { Cmd } from './cmd'
+import { Sub } from './sub'
+import * as html from './html'
 
 export type dom = ReactElement<any>
 

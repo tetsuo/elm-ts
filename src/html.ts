@@ -1,9 +1,9 @@
 import * as Rx from 'fp-ts-rxjs/lib/Observable'
 import { pipe } from 'fp-ts/lib/pipeable'
 import { Observable } from 'rxjs'
-import { Cmd } from './Cmd'
-import { Sub, none } from './Sub'
-import * as platform from './Platform'
+import { Cmd } from './cmd'
+import { Sub, none } from './sub'
+import * as platform from './platform'
 
 export interface Html<dom, msg> {
   (dispatch: platform.Dispatch<msg>): dom

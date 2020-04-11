@@ -1,54 +1,33 @@
 {
   "name": "@tetsuo/elm-ts",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "A porting of TEA to TypeScript featuring fp-ts, io-ts, rxjs5 and React",
   "files": [
     "lib",
     "LICENSE"
   ],
-  "main": "lib/index.js",
+  "main": "lib/platform.js",
   "scripts": {
     "build": "rm -fr lib && tsc",
     "watch": "rm -fr lib && tsc --watch --sourceMap"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tetsuo/elm-ts.git"
-  },
-  "author": "Giulio Canti <giulio.canti@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tetsuo/elm-ts/issues"
-  },
+  "repository": "https://github.com/tetsuo/elm-ts.git",
   "homepage": "https://github.com/tetsuo/elm-ts",
   "dependencies": {
-    "@tetsuo/axios-ts": "^1.0.0",
+    "fp-ts": "^2.5.3",
     "fp-ts-rxjs": "^0.6.4",
     "history": "^4.10.1",
-    "react": "^16.12.0",
-    "rxjs": "^6.5.4",
-    "rxjs-compat": "^6.5.4"
+    "rxjs": "^6.5.4"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
   },
   "devDependencies": {
     "@types/history": "^4.7.3",
     "@types/node": "^12.12.24",
     "@types/react": "^16.9.17",
-    "@typescript-eslint/eslint-plugin": "^1.13.0",
-    "@typescript-eslint/parser": "^1.13.0",
-    "eslint": "^6.1.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-react": "^7.17.0",
-    "prettier": "^1.19.1",
+    "react": "^16.12.0",
     "typescript": "^3.7.4"
-  },
-  "tags": [
-    "typescript",
-    "elm",
-    "fp-ts"
-  ],
-  "keywords": [
-    "typescript",
-    "elm",
-    "fp-ts"
-  ]
+  }
 }

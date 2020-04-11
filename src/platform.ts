@@ -3,8 +3,8 @@ import { pipe } from 'fp-ts/lib/pipeable'
 import * as R from 'fp-ts-rxjs/lib/Observable'
 import { Observable, BehaviorSubject } from 'rxjs'
 import { distinctUntilChanged, mergeAll, share, startWith, switchMap } from 'rxjs/operators'
-import { Cmd } from './Cmd'
-import { Sub, none } from './Sub'
+import { Cmd } from './cmd'
+import { Sub, none } from './sub'
 
 export interface Dispatch<msg> {
   (msg: msg): void

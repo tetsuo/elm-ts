@@ -2,7 +2,7 @@ import { Task } from 'fp-ts/lib/Task'
 import { pipe } from 'fp-ts/lib/pipeable'
 import * as O from 'fp-ts-rxjs/lib/Observable'
 import { interval } from 'rxjs'
-import { Sub } from './Sub'
+import { Sub } from './sub'
 
 export type Time = number
 

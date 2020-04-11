@@ -1,34 +1,24 @@
-import 'rxjs/add/observable/of'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/skip'
-import 'rxjs/add/operator/take'
 import * as O from 'fp-ts/lib/Option'
-import { Subject } from 'rxjs'
+import * as T from 'fp-ts/lib/Task'
+import * as IO from 'fp-ts/lib/IO'
+import { Subject, of } from 'rxjs'
 import * as Rx from 'fp-ts-rxjs/lib/Observable'
-import { Cmd } from './Cmd'
-import { Sub, none, batch } from './Sub'
-import * as html from './Html'
+import { Cmd } from './cmd'
+import { Sub, none, batch } from './sub'
+import * as html from './html'
 import { Location as HistoryLocation, createBrowserHistory } from 'history'
-
-const history = createBrowserHistory()
-
-const location$ = new Subject<Location>()
 
 export type Location = HistoryLocation
 
-function getLocation(): Location {
-  return history.location
-}
-
-history.listen(location => {
-  location$.next(location)
-})
-
 export function pushHistory<msg>(url: string): Cmd<msg> {
-  return Rx.observable.of(() => {
-    history.push(url)
-    return Promise.resolve(O.none)
-  })
+  return of(
+    T.fromIO(
+      IO.io.map(
+        () => history.push(url),
+        () => O.none
+      )
+    )
+  )
 }
 
 export function program<model, msg, dom>(
@@ -40,5 +30,19 @@ export function program<model, msg, dom>(
 ): html.Program<model, msg, dom> {
   const onChangeLocation$ = Rx.map((location: Location) => locationToMessage(location))(location$)
   const subs = (model: model): Sub<msg> => batch([subscriptions(model), onChangeLocation$])
-  return html.program(init(getLocation()), update, view, subs)
+  return html.program(init(history.location), update, view, subs)
 }
+
+/**
+ * @instance
+ */
+const location$ = new Subject<Location>()
+
+/**
+ * @instance
+ */
+const history = createBrowserHistory()
+
+history.listen(location => {
+  location$.next(location)
+})

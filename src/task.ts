@@ -5,9 +5,7 @@ import { some } from 'fp-ts/lib/Option'
 import { Either } from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
 import { observable } from 'fp-ts-rxjs/lib/Observable'
-import { Cmd } from './Cmd'
-
-export { Task }
+import { Cmd } from './cmd'
 
 const sequenceTasks = A.array.sequence(task)
 
@@ -26,10 +24,4 @@ export function sequence<a>(tasks: Array<Task<a>>): Task<Array<a>> {
 
 export function attempt<e, a, msg>(task: Task<Either<e, a>>, f: (e: Either<e, a>) => msg): Cmd<msg> {
   return perform(task, f)
-}
-
-export type RetryOptions = {
-  delay: number
-  maxDelay: number
-  retries: number
 }
