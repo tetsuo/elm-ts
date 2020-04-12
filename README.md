@@ -1,6 +1,6 @@
 Fork of [gcanti/elm-ts](https://github.com/gcanti/elm-ts)
 
-Install from npm:
+The most up-to-date package is published on npm.
 
 ```
 npm i @tetsuo/elm-ts
