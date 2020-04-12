@@ -1,4 +1,10 @@
-(fork of [gcanti/elm-ts](https://github.com/gcanti/elm-ts))
+Fork of [gcanti/elm-ts](https://github.com/gcanti/elm-ts)
+
+Install from npm:
+
+```
+npm i @tetsuo/elm-ts
+```
 
 # Differences from Elm
 
